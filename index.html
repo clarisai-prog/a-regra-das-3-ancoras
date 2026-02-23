@@ -128,7 +128,7 @@
             </div>
             
             <!-- Título no desktop (overlay na imagem) -->
-            <div class="hidden md:flex absolute inset-0 z-20 flex-col items-center justify-center text-center px-12">
+            <div class="hidden md:flex absolute inset-0 z-[15] flex-col items-center justify-center text-center px-12 pointer-events-none">
                 <div class="w-24 h-1 bg-goldLight mb-8 rounded-full shadow-[0_0_20px_rgba(212,175,55,0.5)]"></div>
                 <h1 class="font-serif text-6xl lg:text-7xl font-bold text-[#F3E5AB] cinematic-shadow leading-tight tracking-wide">
                     A Regra das<br/><span class="text-goldLight italic">3 Âncoras</span>
@@ -142,9 +142,9 @@
         </div>
         
         <!-- Lado Direito: Conteúdo (Mobile: scroll / Desktop: scroll independente) -->
-        <div class="md:ml-[50%] min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-16 py-12 bg-dark">
+        <div class="md:ml-[50%] min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-16 py-12 bg-dark relative z-10">
             <!-- Botões topo (Desktop only) -->
-            <div class="hidden md:flex absolute top-6 right-6 z-30 gap-4">
+            <div class="hidden md:flex absolute top-6 right-6 z-40 gap-4">
                 <button class="text-white/70 hover:text-white transition-colors p-2">
                     <span class="material-symbols-outlined text-2xl">menu</span>
                 </button>
