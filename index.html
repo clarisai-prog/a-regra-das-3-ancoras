@@ -483,26 +483,6 @@
                     </p>
                 </div>
                 
-                <!-- Material de Apoio -->
-                <div class="py-6 border-t border-gray-800">
-                    <h2 class="text-xl text-white font-serif mb-4">Material de Apoio</h2>
-                    <div class="bg-surfaceLight rounded-xl p-5 text-center space-y-4 border border-gray-800">
-                        <div class="w-12 h-12 rounded-full bg-dark flex items-center justify-center text-gold border border-gold/30 mx-auto">
-                            <span class="material-symbols-outlined">description</span>
-                        </div>
-                        <div>
-                            <h3 class="text-base font-semibold text-white">Modelos-de-Oracao.pdf</h3>
-                            <p class="text-xs text-gray-400">PDF formatado para celular</p>
-                        </div>
-                        <button id="btn-download-pdf" onclick="handlePDFDownload()" 
-                            class="w-full bg-gold text-dark py-3 rounded-lg font-medium flex items-center justify-center space-x-2 hover:brightness-110 transition">
-                            <span class="material-symbols-outlined">download</span>
-                            <span id="btn-download-text">Baixar Guia PDF</span>
-                        </button>
-                        <p id="pdf-status" class="text-xs text-gray-500 hidden"></p>
-                    </div>
-                </div>
-                
                 <button onclick="showScreen('screen-final')" 
                     class="w-full bg-gold text-dark py-4 rounded-xl font-semibold flex items-center justify-center space-x-2 hover:brightness-110 transition">
                     <span>Finalizar Jornada</span>
@@ -565,6 +545,26 @@
                         "Que a graca do Senhor Jesus Cristo, o amor de Deus e a comunhao do Espirito Santo estejam com todos voces."
                     </p>
                     <p class="text-gold text-xs mt-3">2 Corintios 13, 13</p>
+                </div>
+                
+                <!-- Material de Apoio -->
+                <div class="py-6 border-t border-gray-800">
+                    <h2 class="text-xl text-white font-serif mb-4 text-center">Material de Apoio</h2>
+                    <div class="bg-surfaceLight rounded-xl p-5 text-center space-y-4 border border-gray-800">
+                        <div class="w-12 h-12 rounded-full bg-dark flex items-center justify-center text-gold border border-gold/30 mx-auto">
+                            <span class="material-symbols-outlined">description</span>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-semibold text-white">Modelos-de-Oracao.pdf</h3>
+                            <p class="text-xs text-gray-400">PDF formatado para celular</p>
+                        </div>
+                        <button id="btn-download-pdf" onclick="handlePDFDownload()" 
+                            class="w-full bg-gold text-dark py-3 rounded-lg font-medium flex items-center justify-center space-x-2 hover:brightness-110 transition">
+                            <span class="material-symbols-outlined">download</span>
+                            <span id="btn-download-text">Baixar Guia PDF</span>
+                        </button>
+                        <p id="pdf-status" class="text-xs text-gray-500 hidden"></p>
+                    </div>
                 </div>
                 
                 <button onclick="showScreen('screen-home')" 
