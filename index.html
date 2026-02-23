@@ -4,13 +4,10 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="theme-color" content="#0f1115"/>
-    <meta name="description" content="A Regra das 3 Âncoras - Guia espiritual para conexão diária com Deus através de três momentos de oração"/>
+    <meta name="description" content="A Regra das 3 Âncoras - Guia espiritual para conexão diária com Deus"/>
     <title>A Regra das 3 Âncoras</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -30,9 +27,6 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
-                    },
-                    aspectRatio: {
-                        'video': '16 / 9',
                     }
                 }
             }
@@ -40,11 +34,14 @@
     </script>
     
     <style>
+        * { box-sizing: border-box; }
         html, body { 
+            margin: 0; 
+            padding: 0;
             background-color: #0f1115; 
-            color: #e2e8f0; 
-            -webkit-tap-highlight-color: transparent;
+            color: #e2e8f0;
             overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
         .glass { 
             background: rgba(255,255,255,0.1); 
@@ -54,929 +51,617 @@
         .hide { display: none !important; }
         .fade-in { animation: fadeIn 0.5s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .cinematic-shadow { text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
-        .gradient-overlay { background: linear-gradient(180deg, rgba(15, 17, 21, 0) 0%, rgba(15, 17, 21, 1) 100%); }
-        
-        /* Scrollbar estilizada */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #181b21; }
-        ::-webkit-scrollbar-thumb { background: #c6a87c; border-radius: 3px; }
-        
-        /* Split-screen layout */
-        .split-left {
-            position: relative;
-            overflow: hidden;
+        .cinematic-shadow { text-shadow: 0 4px 15px rgba(0,0,0,0.6); }
+        .gradient-overlay { 
+            background: linear-gradient(180deg, rgba(15,17,21,0) 0%, rgba(15,17,21,1) 100%); 
         }
+        
+        /* Mobile: Stack layout */
+        @media (max-width: 767px) {
+            .screen { 
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+            .screen-header {
+                height: 45vh;
+                position: relative;
+                flex-shrink: 0;
+            }
+            .screen-content {
+                flex: 1;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+        
+        /* Desktop: Split screen */
         @media (min-width: 768px) {
-            .split-left {
-                position: fixed;
-                left: 0;
-                top: 0;
-                width: 50%;
+            .screen {
+                display: flex;
                 height: 100vh;
                 overflow: hidden;
             }
-            .split-right {
+            .screen-header {
+                width: 50%;
+                height: 100vh;
+                position: fixed;
+                left: 0;
+                top: 0;
+            }
+            .screen-content {
+                width: 50%;
                 margin-left: 50%;
-                min-height: 100vh;
+                height: 100vh;
                 overflow-y: auto;
-                overflow-x: hidden;
+                -webkit-overflow-scrolling: touch;
             }
         }
         
-        /* Video container */
-        .video-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        .video-container video,
-        .video-container iframe {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        /* Lock screen home - no scroll */
-        #screen-home {
-            overflow: hidden;
-        }
-        
-        /* Lock screen content - scroll only in split-right */
-        .screen {
-            overflow: hidden;
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #181b21; }
+        ::-webkit-scrollbar-thumb { background: #c6a87c; border-radius: 3px; }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- SCREEN 1: CAPA (Mobile: Fullscreen / Desktop: Split) -->
-    <div id="screen-home" class="screen grid grid-cols-1 md:grid-cols-2 h-screen w-full overflow-hidden">
-        <!-- Lado Esquerdo: Visual (Mobile: 40vh / Desktop: 50% fixed) -->
-        <div class="relative md:fixed md:left-0 md:top-0 md:w-1/2 md:h-full h-[40vh] overflow-hidden bg-dark">
+    <!-- SCREEN 1: CAPA -->
+    <div id="screen-home" class="screen">
+        <div class="screen-header relative overflow-hidden bg-dark">
             <div class="absolute inset-0 bg-black/30 z-10"></div>
-            <img 
-                alt="Ocean sunset" 
-                class="w-full h-full object-cover opacity-80"
-                src="https://images.unsplash.com/photo-1518182170546-076616fdca34?q=80&w=1080&auto=format&fit=crop"
-                loading="eager"
-            />
-            <div class="absolute inset-0 bg-gradient-to-b from-[#1e1526]/60 via-transparent to-dark md:to-[#0f1115]/90 z-[5]"></div>
+            <img alt="Ocean sunset" class="w-full h-full object-cover opacity-80"
+                src="https://images.unsplash.com/photo-1518182170546-076616fdca34?q=80&w=1080&auto=format&fit=crop"/>
+            <div class="absolute inset-0 bg-gradient-to-b from-[#1e1526]/60 via-transparent to-dark z-[5]"></div>
             
-            <!-- Botões topo (Mobile only) -->
-            <div class="md:hidden absolute top-0 left-0 right-0 z-30 flex justify-between items-center p-6">
-                <button class="text-white/70 hover:text-white transition-colors">
-                    <span class="material-symbols-outlined text-3xl">menu</span>
-                </button>
-                <button class="text-white/70 hover:text-white transition-colors" id="btn-install" style="display:none;" title="Instalar App">
+            <!-- Header buttons -->
+            <div class="absolute top-0 left-0 right-0 z-30 flex justify-between items-center p-4 md:p-6">
+                <button class="text-white/70 hover:text-white"><span class="material-symbols-outlined text-3xl">menu</span></button>
+                <button id="btn-install" style="display:none;" class="text-white/70 hover:text-white">
                     <span class="material-symbols-outlined text-3xl">download</span>
                 </button>
             </div>
             
-            <!-- Título centralizado no mobile -->
-            <div class="md:hidden absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-8">
-                <div class="w-16 h-1 bg-goldLight mb-6 rounded-full shadow-[0_0_15px_rgba(212,175,55,0.5)]"></div>
-                <h1 class="font-serif text-5xl font-bold text-[#F3E5AB] cinematic-shadow leading-tight tracking-wide">
-                    A Regra das<br/><span class="text-goldLight italic">3 Âncoras</span>
+            <!-- Title overlay -->
+            <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6">
+                <div class="w-16 md:w-24 h-1 bg-goldLight mb-6 md:mb-8 rounded-full"></div>
+                <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-[#F3E5AB] cinematic-shadow leading-tight">
+                    A Regra das<br/><span class="text-goldLight italic">3 Ancoras</span>
                 </h1>
-                <p class="text-lg text-gray-200 font-light tracking-widest uppercase mt-4 cinematic-shadow opacity-90">Conexão Constante com Deus</p>
-            </div>
-            
-            <!-- Título no desktop (overlay na imagem) -->
-            <div class="hidden md:flex absolute inset-0 z-[15] flex-col items-center justify-center text-center px-12 pointer-events-none">
-                <div class="w-24 h-1 bg-goldLight mb-8 rounded-full shadow-[0_0_20px_rgba(212,175,55,0.5)]"></div>
-                <h1 class="font-serif text-6xl lg:text-7xl font-bold text-[#F3E5AB] cinematic-shadow leading-tight tracking-wide">
-                    A Regra das<br/><span class="text-goldLight italic">3 Âncoras</span>
-                </h1>
-                <p class="text-xl text-gray-200 font-light tracking-[0.2em] uppercase mt-6 cinematic-shadow opacity-90">Conexão Constante com Deus</p>
-                <div class="mt-12 flex items-center space-x-3 text-[#F3E5AB] opacity-80">
+                <p class="text-lg md:text-xl text-gray-200 font-light tracking-widest uppercase mt-4 md:mt-6 cinematic-shadow">
+                    Conexao Constante com Deus
+                </p>
+                <div class="hidden md:flex mt-8 items-center space-x-2 text-[#F3E5AB]">
                     <span class="material-symbols-outlined">anchor</span>
-                    <span class="text-sm tracking-widest">MANHÃ • MEIO-DIA • NOITE</span>
+                    <span class="text-sm tracking-widest">MANHA • MEIO-DIA • NOITE</span>
                 </div>
             </div>
         </div>
         
-        <!-- Lado Direito: Conteúdo (Mobile: scroll / Desktop: scroll independente) -->
-        <div class="md:ml-[50%] min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-16 py-12 bg-dark relative z-10 overflow-y-auto overflow-x-hidden">
-            <!-- Botões topo (Desktop only) -->
-            <div class="hidden md:flex absolute top-6 right-6 z-40 gap-4">
-                <button class="text-white/70 hover:text-white transition-colors p-2">
-                    <span class="material-symbols-outlined text-2xl">menu</span>
-                </button>
-                <button class="text-white/70 hover:text-white transition-colors p-2" id="btn-install-desktop" style="display:none;" title="Instalar App">
-                    <span class="material-symbols-outlined text-2xl">download</span>
-                </button>
-            </div>
-            
-            <!-- Ícones das âncoras (Mobile only) -->
-            <div class="md:hidden flex items-center justify-center space-x-2 text-sm text-[#F3E5AB] opacity-80 mb-8">
-                <span class="material-symbols-outlined text-sm">anchor</span><span>Manhã</span><span class="mx-1">•</span>
-                <span class="material-symbols-outlined text-sm">sunny</span><span>Meio-dia</span><span class="mx-1">•</span>
-                <span class="material-symbols-outlined text-sm">bedtime</span><span>Noite</span>
-            </div>
-            
-            <!-- Conteúdo principal -->
-            <div class="space-y-8 max-w-lg mx-auto md:mx-0">
-                <div class="space-y-4">
-                    <h2 class="font-serif text-2xl md:text-3xl text-gold hidden md:block">Bem-vindo ao seu porto seguro</h2>
-                    <p class="text-gray-400 leading-relaxed text-sm md:text-base">
-                        Este guia serve como um "escudo de bolso" para conectar a sua vontade a Deus em três paradas rápidas e estratégicas ao longo do dia.
-                    </p>
+        <div class="screen-content bg-dark px-6 py-8 md:px-12 lg:px-16 flex flex-col justify-center">
+            <div class="space-y-6 max-w-lg mx-auto">
+                <div class="md:hidden flex items-center justify-center space-x-2 text-sm text-[#F3E5AB] mb-6">
+                    <span>Ancoras: Manha • Meio-dia • Noite</span>
                 </div>
+                
+                <h2 class="hidden md:block font-serif text-2xl md:text-3xl text-gold">Bem-vindo ao seu porto seguro</h2>
+                
+                <p class="text-gray-400 leading-relaxed text-sm md:text-base">
+                    Este guia serve como um "escudo de bolso" para conectar a sua vontade a Deus em tres paradas rapidas e estrategicas ao longo do dia.
+                </p>
                 
                 <div class="bg-gold/10 border border-gold/20 rounded-lg p-4">
                     <p class="text-xs md:text-sm text-gold">
-                        <strong class="font-semibold">Nota de Recomeço:</strong> Se você esquecer a âncora da manhã, não tente "compensar". O seu momento ideal para começar é agora.
+                        <strong>Nota de Recomeco:</strong> Se voce esquecer a ancora da manha, nao tente "compensar". O seu momento ideal para comecar e agora.
                     </p>
                 </div>
                 
-                <button onclick="showScreen('screen-intro')" class="glass w-full py-5 rounded-2xl flex items-center justify-center space-x-3 active:scale-95 transition-all shadow-lg hover:bg-white/10 group">
-                    <span class="material-symbols-outlined text-goldLight group-hover:scale-110 transition-transform">play_circle</span>
-                    <span class="text-lg font-semibold tracking-wide text-white">Iniciar Jornada</span>
+                <button onclick="showScreen('screen-intro')" 
+                    class="glass w-full py-4 rounded-2xl flex items-center justify-center space-x-3 active:scale-95 transition-all hover:bg-white/10">
+                    <span class="material-symbols-outlined text-goldLight">play_circle</span>
+                    <span class="text-lg font-semibold text-white">Iniciar Jornada</span>
                 </button>
-                
-                <p class="text-xs text-white/40 font-light text-center">Guia Premium de Estudo Espiritual</p>
             </div>
         </div>
     </div>
 
-    <!-- SCREEN 2: INTRODUÇÃO (Split-Screen Layout) -->
-    <div id="screen-intro" class="screen hide grid grid-cols-1 md:grid-cols-2 h-screen w-full overflow-hidden">
-        <!-- Lado Esquerdo: Vídeo fixo -->
-        <div class="split-left h-[35vh] md:h-screen overflow-hidden bg-dark">
+    <!-- SCREEN 2: INTRODUCAO -->
+    <div id="screen-intro" class="screen hide">
+        <div class="screen-header relative overflow-hidden bg-dark">
             <div class="absolute inset-0 bg-black/40 z-10"></div>
-            <video 
-                class="w-full h-full object-cover opacity-80"
-                autoplay 
-                muted 
-                loop 
-                playsinline 
-                poster="https://images.unsplash.com/photo-1472552944129-b035e9ea3744?q=80&w=1080&auto=format&fit=crop"
-            >
-                <source src="/video-1.mp4" type="video/mp4"/>
+            <video class="w-full h-full object-cover opacity-80" autoplay muted loop playsinline
+                poster="https://images.unsplash.com/photo-1472552944129-b035e9ea3744?q=80&w=1080&auto=format&fit=crop">
+                <source src="video-1.mp4" type="video/mp4"/>
             </video>
-            <div class="absolute inset-0 z-20 flex flex-col justify-between p-6">
+            <div class="absolute inset-0 z-20 flex flex-col justify-between p-4 md:p-6">
                 <div class="flex justify-between items-start">
-                    <button onclick="showScreen('screen-home')" class="w-10 h-10 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center text-white/90 hover:bg-black/50 transition">
-                        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                    <button onclick="showScreen('screen-home')" class="w-10 h-10 rounded-full bg-black/30 backdrop-blur flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined">arrow_back</span>
                     </button>
-                    <div class="px-3 py-1 rounded-full bg-gold/20 backdrop-blur-md border border-gold/30">
-                        <span class="text-[10px] uppercase tracking-widest text-gold font-medium">Introdução</span>
+                    <div class="px-3 py-1 rounded-full bg-gold/20 backdrop-blur border border-gold/30">
+                        <span class="text-[10px] uppercase text-gold">Introducao</span>
                     </div>
                 </div>
                 <div>
-                    <h1 class="text-2xl md:text-3xl text-white font-medium font-serif leading-tight">O Seu Porto Seguro Diário</h1>
-                    <div class="w-full h-1 bg-white/20 rounded-full mt-4 overflow-hidden">
+                    <h1 class="text-2xl md:text-3xl text-white font-serif">O Seu Porto Seguro Diario</h1>
+                    <div class="w-full h-1 bg-white/20 rounded-full mt-3">
                         <div class="h-full w-1/4 bg-gold rounded-full"></div>
                     </div>
                 </div>
             </div>
-            <div class="absolute bottom-0 left-0 right-0 h-24 gradient-overlay z-10 pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-24 gradient-overlay z-10"></div>
         </div>
         
-        <!-- Lado Direito: Conteúdo scrollável -->
-        <div class="split-right bg-dark min-h-screen overflow-y-auto">
-            <main class="px-6 md:px-10 lg:px-12 py-8 pb-24 max-w-2xl">
+        <div class="screen-content bg-dark px-6 py-8 md:px-12">
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div class="bg-surface border border-gold/20 rounded-xl p-5 relative">
+                    <span class="material-symbols-outlined text-gold absolute -top-3 left-4 bg-dark px-2">format_quote</span>
+                    <p class="font-serif text-gray-200 text-sm italic pt-2">
+                        "Venham a mim, todos os que estao cansados e sobrecarregados, e eu lhes darei descanso."
+                    </p>
+                    <p class="text-gold text-xs mt-2 text-right">(Mateus 11, 28)</p>
+                </div>
                 
-                <!-- Versículo Bíblico -->
-                <section class="mb-8">
-                    <div class="bg-surface border border-gold/20 rounded-xl p-5 relative">
-                        <div class="absolute -top-3 left-4 bg-dark px-2">
-                            <span class="material-symbols-outlined text-gold text-lg">format_quote</span>
-                        </div>
-                        <p class="font-serif text-gray-200 leading-relaxed text-sm italic pt-2">
-                            "Venham a mim, todos os que estão cansados e sobrecarregados, e eu lhes darei descanso."
-                        </p>
-                        <p class="text-gold text-xs mt-3 text-right">(Mateus 11, 28)</p>
-                    </div>
-                </section>
-
-                <!-- Rota Rápida -->
-                <section class="space-y-6 mb-8">
-                    <div class="bg-surface border border-surfaceLight rounded-xl p-5 relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full -mr-8 -mt-8 transition-all group-hover:bg-gold/10"></div>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            Se você já tentou manter uma rotina de oração, falhou e se sentiu em dívida com Deus, deixe esse peso aqui. A Regra das 3 Âncoras não é um fardo para a sua agenda, é um <span class="text-gold">respiro para a sua alma</span> em três breves momentos do dia.
-                        </p>
-                    </div>
-                </section>
-
-                <!-- Rota Completa -->
-                <section class="space-y-6 mb-8">
-                    <div class="flex items-baseline space-x-4 border-b border-gray-800 pb-2">
-                        <h2 class="text-xl text-gold font-serif">Bem-vindo ao seu porto seguro</h2>
-                    </div>
-                    
-                    <div class="space-y-4 text-sm text-gray-400 leading-relaxed">
-                        <p>
-                            Nós fomos ensinados que, para Deus nos ouvir, precisávamos de horas de oração ininterrupta e perfeita. Essa cobrança irreal gerou uma geração de cristãos exaustos, que fogem de Deus por sentirem que "nunca fazem o suficiente".
-                        </p>
-                        <p>
-                            A Regra das 3 Âncoras é a <span class="text-gold">cura para o perfeccionismo espiritual</span>. Ela divide o seu dia em três micropausas intencionais. O objetivo não é bater uma meta, mas lembrar que você está acompanhado o tempo todo.
-                        </p>
-                        <p>
-                            A graça não tem memória para as suas falhas, ela se renova hoje. <span class="text-gold font-medium">O seu momento ideal para começar é agora.</span>
-                        </p>
-                    </div>
-
-                    <div class="bg-gold/10 border border-gold/20 rounded-lg p-4">
-                        <h4 class="text-gold text-xs font-bold uppercase tracking-widest mb-2 flex items-center">
-                            <span class="material-symbols-outlined text-sm mr-2">lightbulb</span> Ação Prática
-                        </h4>
-                        <p class="text-xs text-gray-400">
-                            Baixe o nosso Guia em PDF no final desta jornada e salve na tela de bloqueio do seu celular para facilitar as suas pausas.
-                        </p>
-                    </div>
-                </section>
-
-                <!-- Botão Próximo -->
-                <button onclick="showScreen('screen-manha')" class="w-full bg-gold text-dark py-4 rounded-xl font-semibold text-sm flex items-center justify-center space-x-2 hover:brightness-110 transition active:scale-[0.98]">
-                    <span>Iniciar Âncora da Manhã</span>
-                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                <div class="bg-surface border border-surfaceLight rounded-xl p-5">
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Se voce ja tentou manter uma rotina de oracao, falhou e se sentiu em divida com Deus, deixe esse peso aqui. A Regra das 3 Ancoras nao e um fardo para a sua agenda, e um <span class="text-gold">respiro para a sua alma</span> em tres breves momentos do dia.
+                    </p>
+                </div>
+                
+                <div class="space-y-4">
+                    <h2 class="text-xl text-gold font-serif border-b border-gray-800 pb-2">Bem-vindo ao seu porto seguro</h2>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Nos fomos ensinados que, para Deus nos ouvir, precisavamos de horas de oracao ininterrupta e perfeita. Essa cobranca irreal gerou uma geracao de cristaos exaustos.
+                    </p>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        A Regra das 3 Ancoras e a <span class="text-gold">cura para o perfeccionismo espiritual</span>. O objetivo nao e bater uma meta, mas lembrar que voce esta acompanhado o tempo todo.
+                    </p>
+                </div>
+                
+                <div class="bg-gold/10 border border-gold/20 rounded-lg p-4">
+                    <p class="text-xs text-gold">
+                        <span class="material-symbols-outlined text-sm mr-1">lightbulb</span>
+                        <strong>Acao Pratica:</strong> Baixe o nosso Guia em PDF no final desta jornada e salve na tela de bloqueio do seu celular.
+                    </p>
+                </div>
+                
+                <button onclick="showScreen('screen-manha')" 
+                    class="w-full bg-gold text-dark py-4 rounded-xl font-semibold flex items-center justify-center space-x-2 hover:brightness-110 transition">
+                    <span>Iniciar Ancora da Manha</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
                 </button>
-            </main>
-
+            </div>
         </div>
     </div>
 
-    <!-- SCREEN 3: ÂNCORA DA MANHÃ (Split-Screen com Vídeo) -->
-    <div id="screen-manha" class="screen hide grid grid-cols-1 md:grid-cols-2 h-screen w-full overflow-hidden">
-        <!-- Lado Esquerdo: Vídeo/Imagem fixa -->
-        <div class="split-left h-[35vh] md:h-screen overflow-hidden bg-surface">
+    <!-- SCREEN 3: ANCORA DA MANHA -->
+    <div id="screen-manha" class="screen hide">
+        <div class="screen-header relative overflow-hidden bg-dark">
             <div class="absolute inset-0 bg-black/40 z-10"></div>
-            <!-- Vídeo otimizado para o capítulo da manhã -->
-            <div class="video-container h-full">
-                <video 
-                    class="w-full h-full object-cover opacity-80"
-                    autoplay 
-                    muted 
-                    loop 
-                    playsinline
-                    poster="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=1080&auto=format&fit=crop"
-                >
-                    <source src="/video-1.mp4" type="video/mp4"/>
-                </video>
-            </div>
-            <div class="absolute inset-0 z-20 flex flex-col justify-between p-6">
+            <video class="w-full h-full object-cover opacity-80" autoplay muted loop playsinline
+                poster="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=1080&auto=format&fit=crop">
+                <source src="video-1.mp4" type="video/mp4"/>
+            </video>
+            <div class="absolute inset-0 z-20 flex flex-col justify-between p-4 md:p-6">
                 <div class="flex justify-between items-start">
-                    <button onclick="showScreen('screen-intro')" class="w-10 h-10 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center text-white/90 hover:bg-black/50 transition">
-                        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                    <button onclick="showScreen('screen-intro')" class="w-10 h-10 rounded-full bg-black/30 backdrop-blur flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined">arrow_back</span>
                     </button>
-                    <div class="px-3 py-1 rounded-full bg-gold/20 backdrop-blur-md border border-gold/30">
-                        <span class="text-[10px] uppercase tracking-widest text-gold font-medium">Âncora 1</span>
+                    <div class="px-3 py-1 rounded-full bg-gold/20 backdrop-blur border border-gold/30">
+                        <span class="text-[10px] uppercase text-gold">Ancora 1</span>
                     </div>
                 </div>
                 <div>
-                    <h1 class="text-2xl md:text-3xl text-white font-medium font-serif leading-tight">Âncora da Manhã</h1>
-                    <p class="text-sm text-white/80 mt-1">O Despertar na Graça</p>
-                    <div class="w-full h-1 bg-white/20 rounded-full mt-4 overflow-hidden">
+                    <h1 class="text-2xl md:text-3xl text-white font-serif">Ancora da Manha</h1>
+                    <p class="text-sm text-white/80">O Despertar na Graca</p>
+                    <div class="w-full h-1 bg-white/20 rounded-full mt-3">
                         <div class="h-full w-2/4 bg-gold rounded-full"></div>
                     </div>
                 </div>
             </div>
-            <div class="absolute bottom-0 left-0 right-0 h-24 gradient-overlay z-10 pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-24 gradient-overlay z-10"></div>
         </div>
         
-        <!-- Lado Direito: Conteúdo scrollável -->
-        <div class="split-right bg-dark min-h-screen overflow-y-auto">
-            <main class="px-6 md:px-10 lg:px-12 py-8 pb-24 max-w-2xl">
+        <div class="screen-content bg-dark px-6 py-8 md:px-12">
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div class="bg-surface border border-gold/20 rounded-xl p-5 relative">
+                    <span class="material-symbols-outlined text-gold absolute -top-3 left-4 bg-dark px-2">format_quote</span>
+                    <p class="font-serif text-gray-200 text-sm italic pt-2">
+                        "Faze-me ouvir do teu amor leal pela manha, pois em ti confio."
+                    </p>
+                    <p class="text-gold text-xs mt-2 text-right">(Salmo 143, 8)</p>
+                </div>
                 
-                <!-- Versículo Bíblico -->
-                <section class="mb-8">
-                    <div class="bg-surface border border-gold/20 rounded-xl p-5 relative">
-                        <div class="absolute -top-3 left-4 bg-dark px-2">
-                            <span class="material-symbols-outlined text-gold text-lg">format_quote</span>
-                        </div>
-                        <p class="font-serif text-gray-200 leading-relaxed text-sm italic pt-2">
-                            "Faze-me ouvir do teu amor leal pela manhã, pois em ti confio. Mostra-me o caminho que devo seguir, pois a ti elevo a minha alma."
-                        </p>
-                        <p class="text-gold text-xs mt-3 text-right">(Salmo 143, 8)</p>
+                <div class="bg-surface border border-surfaceLight rounded-xl p-5">
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        O jeito como voce acorda define o seu dia. Deus nao exige uma oracao longa de quem esta exausto; Ele so deseja o seu primeiro <span class="text-gold">"bom dia"</span>.
+                    </p>
+                </div>
+                
+                <div class="bg-surface border border-surfaceLight rounded-xl p-5">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="material-symbols-outlined text-gold">timer</span>
+                        <h3 class="text-sm font-semibold uppercase text-white">Versao 2 Minutos</h3>
                     </div>
-                </section>
-
-                <!-- Rota Rápida -->
-                <section class="space-y-6 mb-8">
-                    <div class="bg-surface border border-surfaceLight rounded-xl p-5 relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full -mr-8 -mt-8 transition-all group-hover:bg-gold/10"></div>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            O jeito como você acorda define o seu dia. Antes de deixar as urgências do mundo invadirem a sua mente com o celular, silencie. Deus não exige uma oração longa de quem está exausto; Ele só deseja o seu primeiro <span class="text-gold">"bom dia"</span>.
-                        </p>
+                    <p class="text-gray-400 text-sm italic border-l-2 border-gold pl-3 mb-2">Oracao de Oferecimento</p>
+                    <p class="font-serif text-gray-200 text-sm">
+                        "Senhor, no silencio deste dia que amanhece, eu Te entrego o meu cansaco, os meus medos e as minhas expectativas. Liberta-me da necessidade de ser perfeito hoje. Amem."
+                    </p>
+                </div>
+                
+                <div class="bg-surface border border-surfaceLight rounded-xl p-5">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="material-symbols-outlined text-gold">schedule</span>
+                        <h3 class="text-sm font-semibold uppercase text-white">Versao 7 Minutos</h3>
                     </div>
-                </section>
-
-                <!-- Rota Completa -->
-                <section class="space-y-6 mb-8">
-                    <div class="flex items-baseline space-x-4 border-b border-gray-800 pb-2">
-                        <h2 class="text-xl text-gold font-serif">O Despertar na Graça</h2>
-                    </div>
-                    
-                    <div class="space-y-4 text-sm text-gray-400 leading-relaxed">
-                        <p>
-                            Acordar com a pressão de fazer um longo devocional perfeito apenas gera ansiedade. Liberte-se desse peso. A Âncora da Manhã é o momento de entregar o controle antes mesmo de sair da cama. <span class="text-gold">Escolha o seu ritmo para hoje:</span>
-                        </p>
-                    </div>
-
-                    <!-- Versão 2 Minutos -->
-                    <div class="bg-surface border border-surfaceLight rounded-xl p-5 relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full -mr-8 -mt-8 transition-all group-hover:bg-gold/10"></div>
-                        <div class="flex items-center space-x-2 mb-4">
-                            <span class="material-symbols-outlined text-gold text-lg">timer</span>
-                            <h3 class="text-sm font-semibold tracking-wide uppercase text-white">Versão 2 Minutos</h3>
-                        </div>
-                        <p class="text-gray-400 text-sm italic border-l-2 border-gold pl-4 py-1 mb-4">Oração de Oferecimento</p>
-                        <p class="text-xs text-gray-500 mb-3">Respire fundo e reze com calma:</p>
-                        <p class="font-serif text-gray-200 leading-relaxed text-sm">
-                            "Senhor, no silêncio deste dia que amanhece, eu Te entrego o meu cansaço, os meus medos e as minhas expectativas. Liberta-me da necessidade de ser perfeito hoje. Que eu caminhe amparado pela Tua graça, oferecendo o meu trabalho, a minha família e as minhas fragilidades ao Teu cuidado amoroso. Amém."
-                        </p>
-                    </div>
-
-                    <!-- Versão 7 Minutos -->
-                    <div class="bg-surface border border-surfaceLight rounded-xl p-5 relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full -mr-8 -mt-8 transition-all group-hover:bg-gold/10"></div>
-                        <div class="flex items-center space-x-2 mb-4">
-                            <span class="material-symbols-outlined text-gold text-lg">schedule</span>
-                            <h3 class="text-sm font-semibold tracking-wide uppercase text-white">Versão 7 Minutos</h3>
-                        </div>
-                        <ul class="space-y-3 text-sm text-gray-300 font-light list-disc list-inside marker:text-gold">
-                            <li>Faça a oração acima.</li>
-                            <li>Em seguida, abra a sua Bíblia no Salmo 23 e leia-o lentamente.</li>
-                            <li>Termine com 1 minuto de silêncio absoluto, apenas sentindo a presença de Deus ao seu lado.</li>
-                        </ul>
-                        <div class="mt-4 pt-4 border-t border-surfaceLight">
-                            <p class="text-gold text-sm font-medium">
-                                O seu momento ideal para começar é agora. Deixe a graça conduzir as suas próximas horas.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Ação Prática -->
-                    <div class="bg-gold/10 border border-gold/20 rounded-lg p-4">
-                        <h4 class="text-gold text-xs font-bold uppercase tracking-widest mb-2 flex items-center">
-                            <span class="material-symbols-outlined text-sm mr-2">lightbulb</span> Ação Prática
-                        </h4>
-                        <p class="text-xs text-gray-400">
-                            Amanhã, não olhe as notificações do celular antes de fazer a sua Âncora da Manhã. Consagre o seu dia a Deus primeiro.
-                        </p>
-                    </div>
-                </section>
-
-                <!-- Botão Próximo -->
-                <button onclick="showScreen('screen-meiodia')" class="w-full bg-gold text-dark py-4 rounded-xl font-semibold text-sm flex items-center justify-center space-x-2 hover:brightness-110 transition active:scale-[0.98]">
+                    <ul class="space-y-2 text-sm text-gray-300 list-disc list-inside marker:text-gold">
+                        <li>Faca a oracao acima</li>
+                        <li>Leia o Salmo 23 lentamente</li>
+                        <li>Termine com 1 minuto de silencio</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gold/10 border border-gold/20 rounded-lg p-4">
+                    <p class="text-xs text-gold">
+                        <span class="material-symbols-outlined text-sm mr-1">lightbulb</span>
+                        <strong>Acao Pratica:</strong> Amanha, nao olhe as notificacoes do celular antes de fazer a sua Ancora da Manha.
+                    </p>
+                </div>
+                
+                <button onclick="showScreen('screen-meiodia')" 
+                    class="w-full bg-gold text-dark py-4 rounded-xl font-semibold flex items-center justify-center space-x-2 hover:brightness-110 transition">
                     <span>Continuar para Meio-Dia</span>
-                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
                 </button>
-            </main>
-
+            </div>
         </div>
     </div>
 
-    <!-- SCREEN 4: ÂNCORA DO MEIO-DIA -->
-    <div id="screen-meiodia" class="screen hide grid grid-cols-1 md:grid-cols-2 h-screen w-full overflow-hidden">
-        <!-- Lado Esquerdo: Vídeo/Imagem fixa -->
-        <div class="split-left h-[35vh] md:h-screen overflow-hidden bg-dark">
+    <!-- SCREEN 4: ANCORA DO MEIO-DIA -->
+    <div id="screen-meiodia" class="screen hide">
+        <div class="screen-header relative overflow-hidden bg-dark">
             <div class="absolute inset-0 bg-black/40 z-10"></div>
-            <!-- Vídeo otimizado - usando mesmo arquivo por ora, pode ser substituído -->
-            <div class="video-container h-full">
-                <video 
-                    class="w-full h-full object-cover opacity-80"
-                    autoplay 
-                    muted 
-                    loop 
-                    playsinline
-                    poster="https://images.unsplash.com/photo-1504386106331-3e4e71712b38?q=80&w=1080&auto=format&fit=crop"
-                >
-                    <source src="/video-1.mp4" type="video/mp4"/>
-                </video>
-            </div>
-            <div class="absolute inset-0 z-20 flex flex-col justify-between p-6">
+            <video class="w-full h-full object-cover opacity-80" autoplay muted loop playsinline
+                poster="https://images.unsplash.com/photo-1504386106331-3e4e71712b38?q=80&w=1080&auto=format&fit=crop">
+                <source src="video-1.mp4" type="video/mp4"/>
+            </video>
+            <div class="absolute inset-0 z-20 flex flex-col justify-between p-4 md:p-6">
                 <div class="flex justify-between items-start">
-                    <button onclick="showScreen('screen-manha')" class="w-10 h-10 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center text-white/90 hover:bg-black/50 transition">
-                        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                    <button onclick="showScreen('screen-manha')" class="w-10 h-10 rounded-full bg-black/30 backdrop-blur flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined">arrow_back</span>
                     </button>
-                    <div class="px-3 py-1 rounded-full bg-gold/20 backdrop-blur-md border border-gold/30">
-                        <span class="text-[10px] uppercase tracking-widest text-gold font-medium">Âncora 2</span>
+                    <div class="px-3 py-1 rounded-full bg-gold/20 backdrop-blur border border-gold/30">
+                        <span class="text-[10px] uppercase text-gold">Ancora 2</span>
                     </div>
                 </div>
                 <div>
-                    <h1 class="text-2xl md:text-3xl text-white font-medium font-serif leading-tight">Âncora do Meio-Dia</h1>
-                    <p class="text-sm text-white/80 mt-1">A Pausa do Descanso</p>
-                    <div class="w-full h-1 bg-white/20 rounded-full mt-4 overflow-hidden">
+                    <h1 class="text-2xl md:text-3xl text-white font-serif">Ancora do Meio-Dia</h1>
+                    <p class="text-sm text-white/80">A Pausa do Descanso</p>
+                    <div class="w-full h-1 bg-white/20 rounded-full mt-3">
                         <div class="h-full w-3/4 bg-gold rounded-full"></div>
                     </div>
                 </div>
             </div>
-            <div class="absolute bottom-0 left-0 right-0 h-24 gradient-overlay z-10 pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-24 gradient-overlay z-10"></div>
         </div>
         
-        <!-- Lado Direito: Conteúdo scrollável -->
-        <div class="split-right bg-dark min-h-screen overflow-y-auto">
-            <main class="px-6 md:px-10 lg:px-12 py-8 pb-24 max-w-2xl">
+        <div class="screen-content bg-dark px-6 py-8 md:px-12">
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div class="bg-surface border border-gold/20 rounded-xl p-5 relative">
+                    <span class="material-symbols-outlined text-gold absolute -top-3 left-4 bg-dark px-2">format_quote</span>
+                    <p class="font-serif text-gray-200 text-sm italic pt-2">
+                        "Orem continuamente. Deem gracas em todas as circunstancias."
+                    </p>
+                    <p class="text-gold text-xs mt-2 text-right">(1 Tessalonicenses 5, 17-18)</p>
+                </div>
                 
-                <!-- Versículo Bíblico -->
-                <section class="mb-8">
-                    <div class="bg-surface border border-gold/20 rounded-xl p-5 relative">
-                        <div class="absolute -top-3 left-4 bg-dark px-2">
-                            <span class="material-symbols-outlined text-gold text-lg">format_quote</span>
-                        </div>
-                        <p class="font-serif text-gray-200 leading-relaxed text-sm italic pt-2">
-                            "Orem continuamente. Deem graças em todas as circunstâncias, pois esta é a vontade de Deus para vocês em Cristo Jesus."
-                        </p>
-                        <p class="text-gold text-xs mt-3 text-right">(1 Tessalonicenses 5, 17-18)</p>
+                <div class="bg-surface border border-surfaceLight rounded-xl p-5">
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        O meio do dia costuma ser caotico. Esta ancora e o seu <span class="text-gold">botao de "pausa"</span>. Um minuto apenas para lembrar que Deus esta no controle no meio do furacao.
+                    </p>
+                </div>
+                
+                <div class="bg-surface border border-surfaceLight rounded-xl p-5">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="material-symbols-outlined text-gold">timer</span>
+                        <h3 class="text-sm font-semibold uppercase text-white">Versao 1 Minuto</h3>
                     </div>
-                </section>
-
-                <!-- Rota Rápida -->
-                <section class="space-y-6 mb-8">
-                    <div class="bg-surface border border-surfaceLight rounded-xl p-5 relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full -mr-8 -mt-8 transition-all group-hover:bg-gold/10"></div>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            O meio do dia costuma ser caótico, cheio de barulho e estresse. Operamos no piloto automático. Esta âncora é o seu <span class="text-gold">botão de "pausa"</span>. Um minuto apenas para lembrar que Deus está no controle no meio do furacão.
-                        </p>
+                    <p class="text-gray-400 text-sm italic border-l-2 border-gold pl-3 mb-2">A Jaculatoria de Alivio</p>
+                    <p class="font-serif text-gray-200 text-sm">
+                        "Jesus, manso e humilde de coracao, fazei o meu coracao semelhante ao Vosso. Que no meio da agitacao eu encontre descanso imediato na Tua graca."
+                    </p>
+                </div>
+                
+                <div class="bg-surface border border-surfaceLight rounded-xl p-5">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="material-symbols-outlined text-gold">schedule</span>
+                        <h3 class="text-sm font-semibold uppercase text-white">Versao 5 Minutos</h3>
                     </div>
-                </section>
-
-                <!-- Rota Completa -->
-                <section class="space-y-6 mb-8">
-                    <div class="flex items-baseline space-x-4 border-b border-gray-800 pb-2">
-                        <h2 class="text-xl text-gold font-serif">A Pausa do Descanso</h2>
-                    </div>
-                    
-                    <div class="space-y-4 text-sm text-gray-400 leading-relaxed">
-                        <p>
-                            No meio das reuniões, do trânsito ou das tarefas de casa, é muito fácil perder a paz. A Âncora do Meio-Dia não é mais um item na sua lista de obrigações, é um <span class="text-gold">oásis no seu deserto diário</span>. Não espere o dia ficar calmo para rezar; reze para que o seu interior se acalme.
-                        </p>
-                    </div>
-
-                    <!-- Versão 1 Minuto -->
-                    <div class="bg-surface border border-surfaceLight rounded-xl p-5 relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full -mr-8 -mt-8 transition-all group-hover:bg-gold/10"></div>
-                        <div class="flex items-center space-x-2 mb-4">
-                            <span class="material-symbols-outlined text-gold text-lg">timer</span>
-                            <h3 class="text-sm font-semibold tracking-wide uppercase text-white">Versão 1 Minuto</h3>
-                        </div>
-                        <p class="text-gray-400 text-sm italic border-l-2 border-gold pl-4 py-1 mb-4">A Jaculatória de Alívio</p>
-                        <p class="text-xs text-gray-500 mb-3">No meio da sua agitação, feche os olhos por um instante:</p>
-                        <p class="font-serif text-gray-200 leading-relaxed text-sm">
-                            "Jesus, manso e humilde de coração, fazei o meu coração semelhante ao Vosso. Que no meio da agitação e do barulho destas horas, eu encontre descanso imediato na Tua graça."
-                        </p>
-                    </div>
-
-                    <!-- Versão 5 Minutos -->
-                    <div class="bg-surface border border-surfaceLight rounded-xl p-5 relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full -mr-8 -mt-8 transition-all group-hover:bg-gold/10"></div>
-                        <div class="flex items-center space-x-2 mb-4">
-                            <span class="material-symbols-outlined text-gold text-lg">schedule</span>
-                            <h3 class="text-sm font-semibold tracking-wide uppercase text-white">Versão 5 Minutos</h3>
-                        </div>
-                        <ul class="space-y-3 text-sm text-gray-300 font-light list-disc list-inside marker:text-gold">
-                            <li>Faça a jaculatória acima.</li>
-                            <li>Depois, leia um único versículo do Evangelho do dia.</li>
-                            <li>Se a sua manhã foi difícil e você falhou nos seus propósitos, não se condene.</li>
-                        </ul>
-                        <div class="mt-4 pt-4 border-t border-surfaceLight">
-                            <p class="text-gold text-sm font-medium">
-                                O seu momento ideal para começar é agora.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Ação Prática -->
-                    <div class="bg-gold/10 border border-gold/20 rounded-lg p-4">
-                        <h4 class="text-gold text-xs font-bold uppercase tracking-widest mb-2 flex items-center">
-                            <span class="material-symbols-outlined text-sm mr-2">lightbulb</span> Ação Prática
-                        </h4>
-                        <p class="text-xs text-gray-400">
-                            Coloque um alarme suave no seu celular para as 12h. Quando tocar, pare por 60 segundos, respire fundo e apenas faça a jaculatória de alívio.
-                        </p>
-                    </div>
-                </section>
-
-                <!-- Botão Próximo -->
-                <button onclick="showScreen('screen-noite')" class="w-full bg-gold text-dark py-4 rounded-xl font-semibold text-sm flex items-center justify-center space-x-2 hover:brightness-110 transition active:scale-[0.98]">
+                    <ul class="space-y-2 text-sm text-gray-300 list-disc list-inside marker:text-gold">
+                        <li>Faca a jaculatoria</li>
+                        <li>Leia um versiculo do Evangelho</li>
+                        <li>Se falhou, nao se condene</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gold/10 border border-gold/20 rounded-lg p-4">
+                    <p class="text-xs text-gold">
+                        <span class="material-symbols-outlined text-sm mr-1">lightbulb</span>
+                        <strong>Acao Pratica:</strong> Coloque um alarme para as 12h e pare por 60 segundos para rezar.
+                    </p>
+                </div>
+                
+                <button onclick="showScreen('screen-noite')" 
+                    class="w-full bg-gold text-dark py-4 rounded-xl font-semibold flex items-center justify-center space-x-2 hover:brightness-110 transition">
                     <span>Continuar para Noite</span>
-                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
                 </button>
-            </main>
-
+            </div>
         </div>
     </div>
 
-    <!-- SCREEN 5: ÂNCORA DA NOITE -->
-    <div id="screen-noite" class="screen hide grid grid-cols-1 md:grid-cols-2 h-screen w-full overflow-hidden">
-        <!-- Lado Esquerdo: Vídeo/Imagem fixa -->
-        <div class="split-left h-[35vh] md:h-screen overflow-hidden bg-dark">
+    <!-- SCREEN 5: ANCORA DA NOITE -->
+    <div id="screen-noite" class="screen hide">
+        <div class="screen-header relative overflow-hidden bg-dark">
             <div class="absolute inset-0 bg-black/40 z-10"></div>
-            <!-- Vídeo otimizado -->
-            <div class="video-container h-full">
-                <video 
-                    class="w-full h-full object-cover opacity-80"
-                    autoplay 
-                    muted 
-                    loop 
-                    playsinline
-                    poster="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1080&auto=format&fit=crop"
-                >
-                    <source src="/video-1.mp4" type="video/mp4"/>
-                </video>
-            </div>
-            <div class="absolute inset-0 z-20 flex flex-col justify-between p-6">
+            <video class="w-full h-full object-cover opacity-80" autoplay muted loop playsinline
+                poster="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1080&auto=format&fit=crop">
+                <source src="video-1.mp4" type="video/mp4"/>
+            </video>
+            <div class="absolute inset-0 z-20 flex flex-col justify-between p-4 md:p-6">
                 <div class="flex justify-between items-start">
-                    <button onclick="showScreen('screen-meiodia')" class="w-10 h-10 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center text-white/90 hover:bg-black/50 transition">
-                        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                    <button onclick="showScreen('screen-meiodia')" class="w-10 h-10 rounded-full bg-black/30 backdrop-blur flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined">arrow_back</span>
                     </button>
-                    <div class="px-3 py-1 rounded-full bg-gold/20 backdrop-blur-md border border-gold/30">
-                        <span class="text-[10px] uppercase tracking-widest text-gold font-medium">Âncora 3</span>
+                    <div class="px-3 py-1 rounded-full bg-gold/20 backdrop-blur border border-gold/30">
+                        <span class="text-[10px] uppercase text-gold">Ancora 3</span>
                     </div>
                 </div>
                 <div>
-                    <h1 class="text-2xl md:text-3xl text-white font-medium font-serif leading-tight">Âncora da Noite</h1>
-                    <p class="text-sm text-white/80 mt-1">O Pouso Seguro</p>
-                    <div class="w-full h-1 bg-white/20 rounded-full mt-4 overflow-hidden">
+                    <h1 class="text-2xl md:text-3xl text-white font-serif">Ancora da Noite</h1>
+                    <p class="text-sm text-white/80">O Pouso Seguro</p>
+                    <div class="w-full h-1 bg-white/20 rounded-full mt-3">
                         <div class="h-full w-full bg-gold rounded-full"></div>
                     </div>
                 </div>
             </div>
-            <div class="absolute bottom-0 left-0 right-0 h-24 gradient-overlay z-10 pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-24 gradient-overlay z-10"></div>
         </div>
         
-        <!-- Lado Direito: Conteúdo scrollável -->
-        <div class="split-right bg-dark min-h-screen overflow-y-auto">
-            <main class="px-6 md:px-10 lg:px-12 py-8 pb-24 max-w-2xl">
+        <div class="screen-content bg-dark px-6 py-8 md:px-12">
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div class="bg-surface border border-gold/20 rounded-xl p-5 relative">
+                    <span class="material-symbols-outlined text-gold absolute -top-3 left-4 bg-dark px-2">format_quote</span>
+                    <p class="font-serif text-gray-200 text-sm italic pt-2">
+                        "Gracas ao grande amor do Senhor e que nao somos consumidos, pois as suas misericordias sao inesgotaveis."
+                    </p>
+                    <p class="text-gold text-xs mt-2 text-right">(Lamentacoes 3, 22-23)</p>
+                </div>
                 
-                <!-- Versículo Bíblico -->
-                <section class="mb-8">
-                    <div class="bg-surface border border-gold/20 rounded-xl p-5 relative">
-                        <div class="absolute -top-3 left-4 bg-dark px-2">
-                            <span class="material-symbols-outlined text-gold text-lg">format_quote</span>
-                        </div>
-                        <p class="font-serif text-gray-200 leading-relaxed text-sm italic pt-2">
-                            "Graças ao grande amor do Senhor é que não somos consumidos, pois as suas misericórdias são inesgotáveis. Renovam-se cada manhã..."
-                        </p>
-                        <p class="text-gold text-xs mt-3 text-right">(Lamentações 3, 22-23)</p>
+                <div class="bg-surface border border-surfaceLight rounded-xl p-5">
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        A noite nao e um tribunal para julgar erros. Suas falhas ja foram cobertas. O seu unico papel agora e <span class="text-gold">descansar na protecao do Pai</span>.
+                    </p>
+                </div>
+                
+                <div class="bg-surface border border-surfaceLight rounded-xl p-5">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="material-symbols-outlined text-gold">timer</span>
+                        <h3 class="text-sm font-semibold uppercase text-white">Versao 2 Minutos</h3>
                     </div>
-                </section>
-
-                <!-- Rota Rápida -->
-                <section class="space-y-6 mb-8">
-                    <div class="bg-surface border border-surfaceLight rounded-xl p-5 relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full -mr-8 -mt-8 transition-all group-hover:bg-gold/10"></div>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            A noite não é um tribunal para você julgar os erros que cometeu durante o dia. Deixe as suas bagagens pesadas do lado de fora. Suas falhas já foram cobertas. O seu único papel agora é <span class="text-gold">descansar na proteção do Pai</span>.
-                        </p>
+                    <p class="text-gray-400 text-sm italic border-l-2 border-gold pl-3 mb-2">Ato de Contricao Curativo</p>
+                    <p class="font-serif text-gray-200 text-sm">
+                        "Meu Deus, eu Te agradeco por ter me sustentado ate aqui. Peco perdao pelas vezes em que tropecei. Eu me lanco na Tua infinita misericordia. Amem."
+                    </p>
+                </div>
+                
+                <div class="bg-surface border border-surfaceLight rounded-xl p-5">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="material-symbols-outlined text-gold">schedule</span>
+                        <h3 class="text-sm font-semibold uppercase text-white">Versao 7 Minutos</h3>
                     </div>
-                </section>
-
-                <!-- Rota Completa -->
-                <section class="space-y-6 mb-8">
-                    <div class="flex items-baseline space-x-4 border-b border-gray-800 pb-2">
-                        <h2 class="text-xl text-gold font-serif">O Pouso Seguro</h2>
-                    </div>
-                    
-                    <div class="space-y-4 text-sm text-gray-400 leading-relaxed">
-                        <p>
-                            Quando deitamos a cabeça no travesseiro, nossa mente costuma ligar o "modo tribunal". Pare com isso hoje. A Âncora da Noite é o lugar sagrado de <span class="text-gold">baixar as armas e aceitar a sua humanidade</span>.
-                        </p>
-                    </div>
-
-                    <!-- Versão 2 Minutos -->
-                    <div class="bg-surface border border-surfaceLight rounded-xl p-5 relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full -mr-8 -mt-8 transition-all group-hover:bg-gold/10"></div>
-                        <div class="flex items-center space-x-2 mb-4">
-                            <span class="material-symbols-outlined text-gold text-lg">timer</span>
-                            <h3 class="text-sm font-semibold tracking-wide uppercase text-white">Versão 2 Minutos</h3>
-                        </div>
-                        <p class="text-gray-400 text-sm italic border-l-2 border-gold pl-4 py-1 mb-4">Ato de Contrição Curativo</p>
-                        <p class="text-xs text-gray-500 mb-3">Abandone a culpa e reze com confiança:</p>
-                        <p class="font-serif text-gray-200 leading-relaxed text-sm">
-                            "Meu Deus, eu Te agradeço por ter me sustentado até aqui. Peço perdão com o coração tranquilo pelas vezes em que tropecei, perdi a paciência ou duvidei do Teu cuidado hoje. Eu não me escondo na culpa; eu me lanço agora na Tua infinita misericórdia, sabendo que o Teu perdão me abraça. Amém."
-                        </p>
-                    </div>
-
-                    <!-- Versão 7 Minutos -->
-                    <div class="bg-surface border border-surfaceLight rounded-xl p-5 relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full -mr-8 -mt-8 transition-all group-hover:bg-gold/10"></div>
-                        <div class="flex items-center space-x-2 mb-4">
-                            <span class="material-symbols-outlined text-gold text-lg">schedule</span>
-                            <h3 class="text-sm font-semibold tracking-wide uppercase text-white">Versão 7 Minutos</h3>
-                        </div>
-                        <p class="text-gray-400 text-sm italic border-l-2 border-gold pl-4 py-1 mb-4">Exame de Consciência Gentil</p>
-                        <p class="text-xs text-gray-500 mb-3">Faça o Ato de Contrição e reflita sem peso sobre estas 3 perguntas:</p>
-                        
-                        <div class="bg-surfaceLight/50 rounded-lg p-4 space-y-3 mb-4">
-                            <ul class="space-y-4 text-sm text-white font-light">
-                                <li class="flex items-start space-x-3">
-                                    <span class="material-symbols-outlined text-gold text-sm mt-0.5">check_circle</span>
-                                    <span>Onde eu percebi um pequeno cuidado de Deus por mim hoje (um livramento, um sorriso, um momento de paz)?</span>
-                                </li>
-                                <li class="flex items-start space-x-3">
-                                    <span class="material-symbols-outlined text-gold text-sm mt-0.5">check_circle</span>
-                                    <span>Em qual momento do dia eu deixei a ansiedade, o cansaço ou a irritação roubarem a minha paz?</span>
-                                </li>
-                                <li class="flex items-start space-x-3">
-                                    <span class="material-symbols-outlined text-gold text-sm mt-0.5">check_circle</span>
-                                    <span>Como posso recomeçar amanhã de forma mais leve, confiando mais na graça de Deus?</span>
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <p class="text-gold text-sm font-medium pt-3 border-t border-surfaceLight">
-                            Deus não dorme justamente para que você possa descansar. O seu momento ideal para começar é agora. Durma em paz.
-                        </p>
-                    </div>
-
-                    <!-- Ação Prática -->
-                    <div class="bg-gold/10 border border-gold/20 rounded-lg p-4">
-                        <h4 class="text-gold text-xs font-bold uppercase tracking-widest mb-2 flex items-center">
-                            <span class="material-symbols-outlined text-sm mr-2">lightbulb</span> Ação Prática
-                        </h4>
-                        <p class="text-xs text-gray-400">
-                            Hoje, ao deitar, não peça nada a Deus. Apenas agradeça mentalmente por uma pequena coisa boa que aconteceu no seu dia e deixe o sono vir.
-                        </p>
-                    </div>
-                </section>
-
-                <!-- Material de Apoio com Lazy Load do PDF -->
-                <section class="py-6 border-t border-gray-800 mb-8">
+                    <p class="text-gray-400 text-sm italic border-l-2 border-gold pl-3 mb-3">Exame de Consciencia Gentil</p>
+                    <ul class="space-y-3 text-sm text-white">
+                        <li class="flex items-start space-x-2">
+                            <span class="material-symbols-outlined text-gold text-sm mt-0.5">check_circle</span>
+                            <span>Onde eu percebi um cuidado de Deus por mim hoje?</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="material-symbols-outlined text-gold text-sm mt-0.5">check_circle</span>
+                            <span>Em qual momento a ansiedade roubou minha paz?</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="material-symbols-outlined text-gold text-sm mt-0.5">check_circle</span>
+                            <span>Como posso recomecar amanha mais leve?</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gold/10 border border-gold/20 rounded-lg p-4">
+                    <p class="text-xs text-gold">
+                        <span class="material-symbols-outlined text-sm mr-1">lightbulb</span>
+                        <strong>Acao Pratica:</strong> Ao deitar, nao peca nada. Apenas agradeca por uma coisa boa do dia.
+                    </p>
+                </div>
+                
+                <!-- Material de Apoio -->
+                <div class="py-6 border-t border-gray-800">
                     <h2 class="text-xl text-white font-serif mb-4">Material de Apoio</h2>
-                    <div class="bg-surfaceLight rounded-xl p-5 flex flex-col items-center text-center space-y-4 shadow-lg border border-gray-800/50">
-                        <div class="w-12 h-12 rounded-full bg-dark flex items-center justify-center text-gold border border-gold/30">
+                    <div class="bg-surfaceLight rounded-xl p-5 text-center space-y-4 border border-gray-800">
+                        <div class="w-12 h-12 rounded-full bg-dark flex items-center justify-center text-gold border border-gold/30 mx-auto">
                             <span class="material-symbols-outlined">description</span>
                         </div>
-                        <div class="space-y-1">
+                        <div>
                             <h3 class="text-base font-semibold text-white">Modelos-de-Oracao.pdf</h3>
-                            <p class="text-xs text-gray-400 max-w-[250px]">
-                                PDF formatado para celular. Salve na tela de bloqueio ou imprima.
-                            </p>
+                            <p class="text-xs text-gray-400">PDF formatado para celular</p>
                         </div>
-                        <button 
-                            id="btn-download-pdf"
-                            onclick="handlePDFDownload()" 
-                            class="w-full bg-gold text-dark py-3 px-4 rounded-lg font-medium text-sm flex items-center justify-center space-x-2 hover:brightness-110 transition active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                            <span class="material-symbols-outlined text-[20px]">download</span>
+                        <button id="btn-download-pdf" onclick="handlePDFDownload()" 
+                            class="w-full bg-gold text-dark py-3 rounded-lg font-medium flex items-center justify-center space-x-2 hover:brightness-110 transition">
+                            <span class="material-symbols-outlined">download</span>
                             <span id="btn-download-text">Baixar Guia PDF</span>
                         </button>
                         <p id="pdf-status" class="text-xs text-gray-500 hidden"></p>
                     </div>
-                </section>
-
-                <!-- Botão Finalizar -->
-                <button onclick="showScreen('screen-final')" class="w-full bg-gold text-dark py-4 rounded-xl font-semibold text-sm flex items-center justify-center space-x-2 hover:brightness-110 transition active:scale-[0.98]">
+                </div>
+                
+                <button onclick="showScreen('screen-final')" 
+                    class="w-full bg-gold text-dark py-4 rounded-xl font-semibold flex items-center justify-center space-x-2 hover:brightness-110 transition">
                     <span>Finalizar Jornada</span>
-                    <span class="material-symbols-outlined text-[20px]">check_circle</span>
+                    <span class="material-symbols-outlined">check_circle</span>
                 </button>
-            </main>
-
+            </div>
         </div>
     </div>
 
-    <!-- SCREEN 6: PÁGINA FINAL -->
-    <div id="screen-final" class="screen hide grid grid-cols-1 md:grid-cols-2 h-screen w-full overflow-hidden">
-        <!-- Lado Esquerdo: Imagem fixa -->
-        <div class="split-left h-[40vh] md:h-screen overflow-hidden bg-dark">
+    <!-- SCREEN 6: PAGINA FINAL -->
+    <div id="screen-final" class="screen hide">
+        <div class="screen-header relative overflow-hidden bg-dark">
             <div class="absolute inset-0 bg-black/40 z-10"></div>
-            <img 
-                alt="Sunset path" 
-                class="w-full h-full object-cover opacity-80"
-                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1080&auto=format&fit=crop"
-                loading="lazy"
-            />
-            <div class="absolute inset-0 z-20 flex flex-col justify-between p-6">
+            <img alt="Sunset path" class="w-full h-full object-cover opacity-80"
+                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1080&auto=format&fit=crop"/>
+            <div class="absolute inset-0 z-20 flex flex-col justify-between p-4 md:p-6">
                 <div class="flex justify-between items-start">
-                    <button onclick="showScreen('screen-noite')" class="w-10 h-10 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center text-white/90 hover:bg-black/50 transition">
-                        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                    <button onclick="showScreen('screen-noite')" class="w-10 h-10 rounded-full bg-black/30 backdrop-blur flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined">arrow_back</span>
                     </button>
-                    <div class="px-3 py-1 rounded-full bg-gold/20 backdrop-blur-md border border-gold/30">
-                        <span class="text-[10px] uppercase tracking-widest text-gold font-medium">Conclusão</span>
+                    <div class="px-3 py-1 rounded-full bg-gold/20 backdrop-blur border border-gold/30">
+                        <span class="text-[10px] uppercase text-gold">Conclusao</span>
                     </div>
                 </div>
                 <div>
-                    <h1 class="text-2xl md:text-3xl text-white font-medium font-serif leading-tight">Obrigado por caminhar conosco</h1>
-                    <div class="w-full h-1 bg-white/20 rounded-full mt-4 overflow-hidden">
+                    <h1 class="text-2xl md:text-3xl text-white font-serif">Obrigado por caminhar conosco</h1>
+                    <div class="w-full h-1 bg-white/20 rounded-full mt-3">
                         <div class="h-full w-full bg-gold rounded-full"></div>
                     </div>
                 </div>
             </div>
-            <div class="absolute bottom-0 left-0 right-0 h-24 gradient-overlay z-10 pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-24 gradient-overlay z-10"></div>
         </div>
         
-        <!-- Lado Direito: Conteúdo -->
-        <div class="split-right bg-dark min-h-screen overflow-y-auto">
-            <main class="px-6 md:px-10 lg:px-12 py-8 pb-24 max-w-2xl">
+        <div class="screen-content bg-dark px-6 py-8 md:px-12">
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div class="bg-surface border border-gold/20 rounded-xl p-5 relative">
+                    <span class="material-symbols-outlined text-gold absolute -top-3 left-4 bg-dark px-2">format_quote</span>
+                    <p class="font-serif text-gray-200 text-sm italic pt-2">
+                        "Eu sou o caminho, a verdade e a vida."
+                    </p>
+                    <p class="text-gold text-xs mt-2 text-right">(Joao 14, 6)</p>
+                </div>
                 
-                <!-- Versículo Bíblico -->
-                <section class="mb-8">
-                    <div class="bg-surface border border-gold/20 rounded-xl p-5 relative">
-                        <div class="absolute -top-3 left-4 bg-dark px-2">
-                            <span class="material-symbols-outlined text-gold text-lg">format_quote</span>
-                        </div>
-                        <p class="font-serif text-gray-200 leading-relaxed text-sm italic pt-2">
-                            "Eu sou o caminho, a verdade e a vida."
-                        </p>
-                        <p class="text-gold text-xs mt-3 text-right">(João 14, 6)</p>
+                <div class="text-center space-y-6 py-8">
+                    <div class="w-16 h-[1px] bg-gold mx-auto opacity-50"></div>
+                    
+                    <h2 class="font-serif text-2xl text-white">A Jornada Continua</h2>
+                    <p class="text-sm text-gray-400 font-light leading-relaxed max-w-xs mx-auto">
+                        A disciplina espiritual e uma jornada, nao um destino. Retorne a este guia sempre que precisar recalibrar sua bussola interior.
+                    </p>
+                    
+                    <div class="flex justify-center">
+                        <span class="material-symbols-outlined text-gold text-4xl">anchor</span>
                     </div>
-                </section>
-
-                <!-- Mensagem de Fechamento -->
-                <section class="space-y-8 mb-8">
-                    <div class="text-center space-y-6">
-                        <div class="w-16 h-[1px] bg-gold mx-auto opacity-50"></div>
-                        
-                        <div class="space-y-4">
-                            <h2 class="font-serif text-2xl text-white">A Jornada Continua</h2>
-                            <p class="text-sm text-gray-400 font-light leading-relaxed max-w-xs mx-auto">
-                                A disciplina espiritual é uma jornada, não um destino. Retorne a este guia sempre que precisar recalibrar sua bússola interior.
-                            </p>
-                        </div>
-                        
-                        <div class="flex justify-center">
-                            <span class="material-symbols-outlined text-gold text-4xl">anchor</span>
-                        </div>
-                    </div>
-
-                    <!-- Versículo Final -->
-                    <div class="bg-surface border border-surfaceLight rounded-xl p-6 text-center">
-                        <p class="font-serif text-gray-300 text-sm italic leading-relaxed">
-                            "Que a graça do Senhor Jesus Cristo, o amor de Deus e a comunhão do Espírito Santo estejam com todos vocês."
-                        </p>
-                        <p class="text-gold text-xs mt-3">2 Coríntios 13, 13</p>
-                    </div>
-                </section>
-
-                <!-- Botão Voltar ao Início -->
-                <button onclick="showScreen('screen-home')" class="w-full glass py-4 rounded-xl flex items-center justify-center space-x-2 active:scale-95 transition-all hover:bg-white/10">
+                </div>
+                
+                <div class="bg-surface border border-surfaceLight rounded-xl p-6 text-center">
+                    <p class="font-serif text-gray-300 text-sm italic leading-relaxed">
+                        "Que a graca do Senhor Jesus Cristo, o amor de Deus e a comunhao do Espirito Santo estejam com todos voces."
+                    </p>
+                    <p class="text-gold text-xs mt-3">2 Corintios 13, 13</p>
+                </div>
+                
+                <button onclick="showScreen('screen-home')" 
+                    class="w-full glass py-4 rounded-xl flex items-center justify-center space-x-2 hover:bg-white/10 transition">
                     <span class="material-symbols-outlined text-goldLight">home</span>
-                    <span class="text-sm font-medium tracking-wide text-white">Voltar ao Início</span>
+                    <span class="text-sm font-medium text-white">Voltar ao Inicio</span>
                 </button>
-            </main>
-
+            </div>
         </div>
     </div>
 
-    <!-- Scripts -->
     <script>
-        /**
-         * Sistema de Navegação entre Telas
-         */
+        // Navegacao entre telas
         function showScreen(id) {
-            // Esconde todas as telas
-            const screens = document.querySelectorAll('.screen');
-            screens.forEach(screen => {
-                screen.classList.add('hide');
-                screen.classList.remove('fade-in');
+            document.querySelectorAll('.screen').forEach(s => {
+                s.classList.add('hide');
+                s.classList.remove('fade-in');
             });
-            
-            // Mostra a tela solicitada
             const target = document.getElementById(id);
             if (target) {
                 target.classList.remove('hide');
                 target.classList.add('fade-in');
             }
-            
-            // Scroll para o topo
             window.scrollTo(0, 0);
-            
-            // Scroll interno das colunas split-right
-            const rightPanels = document.querySelectorAll('.split-right');
-            rightPanels.forEach(panel => panel.scrollTop = 0);
         }
 
-        /**
-         * Handler de Download do PDF com Lazy Load
-         */
+        // Download PDF com lazy load
         async function handlePDFDownload() {
             const btn = document.getElementById('btn-download-pdf');
             const btnText = document.getElementById('btn-download-text');
-            const statusEl = document.getElementById('pdf-status');
+            const status = document.getElementById('pdf-status');
             
-            // Estado de carregamento
             btn.disabled = true;
             btnText.textContent = 'Carregando...';
-            statusEl.textContent = 'Inicializando gerador de PDF...';
-            statusEl.classList.remove('hidden');
+            status.textContent = 'Inicializando...';
+            status.classList.remove('hidden');
             
             try {
-                // Carrega o módulo pdfGenerator.js sob demanda (Lazy Load)
                 if (!window.PdfGenerator) {
-                    await loadScript('/pdfGenerator.js');
+                    await new Promise((resolve, reject) => {
+                        const script = document.createElement('script');
+                        script.src = 'pdfGenerator.js';
+                        script.onload = resolve;
+                        script.onerror = reject;
+                        document.head.appendChild(script);
+                    });
                 }
                 
-                // Gera o PDF
                 await window.PdfGenerator.generate(
-                    // onProgress
-                    (status) => {
-                        statusEl.textContent = status.message;
-                    },
-                    // onComplete
-                    (result) => {
-                        btnText.textContent = 'Download Concluído!';
-                        statusEl.textContent = `Arquivo: ${result.filename}`;
+                    (p) => status.textContent = p.message,
+                    (r) => {
+                        btnText.textContent = 'Download Concluido!';
+                        status.textContent = `Arquivo: ${r.filename}`;
                         setTimeout(() => {
                             btn.disabled = false;
                             btnText.textContent = 'Baixar Guia PDF';
-                            statusEl.classList.add('hidden');
+                            status.classList.add('hidden');
                         }, 3000);
                     },
-                    // onError
-                    (error) => {
-                        throw new Error(error);
-                    }
+                    (e) => { throw new Error(e); }
                 );
-                
-            } catch (error) {
-                console.error('Erro:', error);
+            } catch (err) {
                 btnText.textContent = 'Erro ao Baixar';
-                statusEl.textContent = 'Tente novamente mais tarde.';
-                statusEl.classList.add('text-red-400');
+                status.textContent = 'Tente novamente.';
                 btn.disabled = false;
             }
         }
 
-        /**
-         * Carrega um script dinamicamente (Lazy Load)
-         */
-        function loadScript(src) {
-            return new Promise((resolve, reject) => {
-                const script = document.createElement('script');
-                script.src = src;
-                script.async = true;
-                script.onload = resolve;
-                script.onerror = () => reject(new Error(`Falha ao carregar ${src}`));
-                document.head.appendChild(script);
-            });
-        }
-
-        // PWA Setup
+        // PWA
         const manifestJSON = {
-            "name": "3 Âncoras",
-            "short_name": "3 Âncoras",
+            "name": "3 Ancoras",
+            "short_name": "3 Ancoras",
             "start_url": ".",
             "display": "standalone",
             "background_color": "#0f1115",
             "theme_color": "#0f1115",
-            "icons": [
-                {
-                    "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzBmMTExNSIvPjx0ZXh0IHg9IjUwIiB5PSI2MCIgZm9udC1zaXplPSI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2M2YTg3YyI+4pqTPC90ZXh0Pjwvc3ZnPg==",
-                    "sizes": "192x192",
-                    "type": "image/svg+xml"
-                },
-                {
-                    "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzBmMTExNSIvPjx0ZXh0IHg9IjUwIiB5PSI2MCIgZm9udC1zaXplPSI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2M2YTg3YyI+4pqTPC90ZXh0Pjwvc3ZnPg==",
-                    "sizes": "512x512",
-                    "type": "image/svg+xml"
-                }
-            ]
+            "icons": [{
+                "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzBmMTExNSIvPjx0ZXh0IHg9IjUwIiB5PSI2MCIgZm9udC1zaXplPSI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2M2YTg3YyI+4pqTPC90ZXh0Pjwvc3ZnPg==",
+                "sizes": "192x192",
+                "type": "image/svg+xml"
+            }]
         };
 
-        // Injeta o manifest dinamicamente
-        const manifestBlob = new Blob([JSON.stringify(manifestJSON)], { type: 'application/json' });
-        const manifestURL = URL.createObjectURL(manifestBlob);
         const link = document.createElement('link');
         link.rel = 'manifest';
-        link.href = manifestURL;
+        link.href = URL.createObjectURL(new Blob([JSON.stringify(manifestJSON)], {type: 'application/json'}));
         document.head.appendChild(link);
 
-        // Registra o Service Worker
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js')
-                .then(() => console.log('SW Registered'))
-                .catch(err => console.error('SW Registration failed:', err));
+            navigator.serviceWorker.register('sw.js').catch(() => {});
         }
 
-        // Gerencia o prompt de instalação do PWA
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            // Mostra botões de instalação
-            const btnMobile = document.getElementById('btn-install');
-            const btnDesktop = document.getElementById('btn-install-desktop');
-            if (btnMobile) btnMobile.style.display = 'block';
-            if (btnDesktop) btnDesktop.style.display = 'block';
-        });
-
-        // Handler para botões de instalação
-        function setupInstallButtons() {
-            const buttons = ['btn-install', 'btn-install-desktop'];
-            buttons.forEach(id => {
-                const btn = document.getElementById(id);
-                if (btn) {
-                    btn.addEventListener('click', () => {
-                        if (deferredPrompt) {
-                            deferredPrompt.prompt();
-                            deferredPrompt.userChoice.then(() => {
-                                deferredPrompt = null;
-                            });
-                        }
-                    });
-                }
-            });
-        }
-
-        // Inicialização
-        document.addEventListener('DOMContentLoaded', () => {
-            setupInstallButtons();
+            document.getElementById('btn-install').style.display = 'block';
         });
     </script>
 </body>
